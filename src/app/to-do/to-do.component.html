@@ -1,0 +1,12 @@
+<div id="toDoList">
+  <div id="interfaceInput">
+    <input id="input" [(ngModel)] = "todoTitle" type="text">
+    <input id="addToList" class="buttonStyle" (click)="addTasks()" type="submit" value="Добавить">
+  </div>
+  <table id="list">
+    <app-to-do-list
+      [todo]="t"
+      *ngFor="let t of (todoState | async).todos"
+    ></app-to-do-list>
+  </table>
+</div>

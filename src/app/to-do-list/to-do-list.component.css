@@ -1,0 +1,38 @@
+[data-task-done] {
+  display: flex;
+  position: absolute;
+  margin: 0px 40px;
+}
+
+.taskNotDone {
+  font-family: monospace;
+  font-size: 24px;
+}
+
+.taskDone {
+  font-family: monospace;
+  font-size: 24px;
+  text-decoration: line-through;
+  color: darkgrey;
+}
+
+[data-task-status] {
+  margin: 0 40% 0 0;
+  -webkit-appearance: none;
+  background-color: #fafafa;
+  border: 1px solid #cacece;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+[data-task-status]:checked {
+  margin: 0;
+  background-color: #0c89f4;
+  border: 1px solid #ffffff;
+  box-shadow: 0 1px 2px rgba(38, 43, 102, 0), 0px -2px 12px 4px rgb(114, 225, 123);
+  color: #99a1a7;
+}
+

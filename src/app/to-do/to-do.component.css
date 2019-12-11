@@ -1,0 +1,74 @@
+input, button {
+  outline: 0;
+}
+
+tr {
+  display: flex;
+  height: 30px;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  border-bottom: 1px solid aliceblue;
+}
+
+td {
+  font-family: monospace;
+  font-size: 24px;
+  margin: 0 5px;
+}
+
+#interfaceInput {
+  display: flex;
+  width: 500px;
+  border-radius: 8px;
+  justify-content: space-between;
+}
+
+#input, #addToList {
+  border-radius: 8px;
+  border: 1px solid cyan;
+  outline: none;
+}
+
+#input{
+  outline-width: 0;
+  width: 60%;
+  padding: 12px 20px;
+}
+
+#addToList{
+  width: 29%;
+  padding: 5px;
+  font-size: 80%;
+  background: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+  font-weight: 600;
+  color: #fff;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+#toDoList {
+  width: 700px;
+  margin: auto;
+  padding: 8%;
+  position: relative;
+  min-height: 300px;
+  border-radius: 8px;
+  background: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+}
+
+#list {
+  display: table;
+  width: 500px;
+  margin-top: 10px;
+  background: rgba(255,255,255,.3);
+  border-collapse: separate;
+  border-spacing: 7px 11px;
+  border-radius: 8px;
+}
