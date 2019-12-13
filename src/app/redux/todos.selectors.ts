@@ -10,7 +10,7 @@ export const getFilter = createSelector(
 
 export const getActualTodos = createSelector(
   getTodosState,
-  ({todos, filter}: Todos) => filter
+  ({todos, filter}: Todos) => filter != 2
     ? todos.filter(todoItem => todoItem.status === filter)
     : todos
 );

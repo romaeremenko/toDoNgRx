@@ -2,9 +2,9 @@ import {Todo, Todos} from "../todo.model";
 import {AddTodo, ChangeStatus, DeleteTodo, FilterTodos} from "../redux/todos.action";
 
 export enum TO_DOS_STATUS {
-  ALL,
   INPROGRESS,
-  DONE
+  DONE,
+  ALL,
 }
 
 export const TASKS = [

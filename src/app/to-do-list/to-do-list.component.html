@@ -2,9 +2,9 @@
   <tr>
     <input type="checkbox"
            data-task-status
-           [checked]="todo.status === 1 ? false : true"
+           [checked]="todo.status ? true : false"
            (click)="changeStatus()">
-    <td [ngClass]="todo.status === 1 ? 'taskNotDone' : 'taskDone'">{{todo.task}}</td>
+    <td [ngClass]="todo.status ? 'taskDone' : 'taskNotDone'">{{todo.task}}</td>
     <i class="pi pi-times" (click)="onDelete()"></i>
   </tr>
 </div>

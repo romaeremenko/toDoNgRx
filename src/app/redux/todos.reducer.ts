@@ -47,8 +47,8 @@ function changeStatus(todoList, todoForChangeStatus) {
       todoItem = {
         ...todoItem,
         status: todoItem.status
-          ? TO_DOS_STATUS.DONE
-          : TO_DOS_STATUS.INPROGRESS
+          ? TO_DOS_STATUS.INPROGRESS
+          : TO_DOS_STATUS.DONE
       };
     }
 
