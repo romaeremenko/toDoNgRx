@@ -8,14 +8,20 @@ import {AppComponent} from './app.component';
 import {ToDoComponent} from './to-do/to-do.component';
 import {ToDoListComponent} from './to-do-list/to-do-list.component';
 import {todosReducer} from "./redux/todos.reducer";
-import {CheckboxModule} from "primeng";
+import {CheckboxModule, SelectButtonModule, TabMenuModule} from "primeng";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import { InputComponent } from './share/input/input.component';
+import { ButtonComponent } from './share/button/button.component';
+import {EffectsModule} from "@ngrx/effects";
+import {TodosEffects} from "./redux/todos.effect";
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDoComponent,
-    ToDoListComponent
+    ToDoListComponent,
+    InputComponent,
+    ButtonComponent
   ],
   imports: [
     FormsModule,
@@ -25,7 +31,10 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }),
-    CheckboxModule
+    CheckboxModule,
+    TabMenuModule,
+    SelectButtonModule,
+    EffectsModule.forRoot([TodosEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

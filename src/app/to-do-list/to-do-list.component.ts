@@ -1,9 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {Todo} from "../todo.model";
 import {Store} from "@ngrx/store";
-import {AppState} from "../redux/app.state";
-import {CheckboxModule} from 'primeng/checkbox';
 import {ChangeStatus, DeleteTodo} from "../redux/todos.action";
+import {AppState, TO_DOS_STATUS} from "../share/global-variables";
 
 @Component({
   selector: 'app-to-do-list',
@@ -12,14 +11,16 @@ import {ChangeStatus, DeleteTodo} from "../redux/todos.action";
 })
 export class ToDoListComponent {
   @Input() todo: Todo;
+  @Input() selectedType: TO_DOS_STATUS;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>) {
+  }
 
-  onDelete(){
+  onDelete(): void {
     this.store.dispatch(new DeleteTodo(this.todo));
   }
 
-  changeStatus(){
+  changeStatus(): void {
     this.store.dispatch(new ChangeStatus(this.todo));
   }
 }

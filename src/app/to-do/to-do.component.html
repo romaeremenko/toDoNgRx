@@ -1,12 +1,23 @@
 <div id="toDoList">
   <div id="interfaceInput">
-    <input id="input" [(ngModel)] = "todoTitle" type="text">
-    <input id="addToList" class="buttonStyle" (click)="addTasks()" type="submit" value="Добавить">
+    <app-input [(ngModel)]="todoTitle"></app-input>
+    <app-button
+      (action)="addTasks()"
+      label="Добавить">
+    </app-button>
   </div>
   <table id="list">
     <app-to-do-list
-      [todo]="t"
-      *ngFor="let t of (todoState | async).todos"
+      *ngFor="let todoItem of todoItems"
+      [todo]="todoItem"
+      [selectedType]="selectedType"
     ></app-to-do-list>
   </table>
+  <div style="width: 100%; position: relative">
+    <p-selectButton
+      [options]="selectTypes"
+      [(ngModel)]="selectedType"
+      (onChange)="filteredBySelectedType()">
+    </p-selectButton>
+  </div>
 </div>

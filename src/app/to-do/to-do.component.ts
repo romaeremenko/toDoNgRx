@@ -1,35 +1,56 @@
-import {Component, OnInit} from '@angular/core';
-import {Todo, Todos} from "../todo.model";
-import {AppState} from "../redux/app.state";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Todo} from "../todo.model";
 import {select, Store} from "@ngrx/store";
-import {Observable} from "rxjs";
-import {AddTodo} from "../redux/todos.action";
-import {getTodos} from "../redux/todos.selectors";
+import {Subject} from "rxjs";
+import {AddTodo, FilterTodos} from "../redux/todos.action";
+import {getActualTodos, getFilter} from "../redux/todos.selectors";
+import {SelectItem} from 'primeng/api';
+import {takeUntil} from "rxjs/operators";
+import {AppState, FILTERED_OPTIONS, TO_DOS_STATUS} from "../share/global-variables";
 
 @Component({
   selector: 'app-to-do',
   templateUrl: './to-do.component.html',
   styleUrls: ['./to-do.component.css']
 })
-export class ToDoComponent implements OnInit {
+export class ToDoComponent implements OnInit, OnDestroy {
   todoTitle: string;
-  todos$: Todo[];
-  public todoState: Observable<Todos>;
+  selectedType: TO_DOS_STATUS;
+  todoItems: Todo[];
+  readonly selectTypes: SelectItem[] = FILTERED_OPTIONS;
 
-  constructor(private store: Store<AppState>) { }
+  private destroy$: Subject<void> = new Subject<void>();
 
-  ngOnInit() {
-    this.todoState = this.store.select('todoPage');
-    this.store.pipe(select(getTodos)).subscribe(t => {
-      this.todos$ = t;
-    })
+  constructor(private store: Store<AppState>) {
+  }
+
+  ngOnInit(): void {
+    this.store.pipe(
+      select(getFilter),
+      takeUntil(this.destroy$)
+    )
+      .subscribe((actualSelectedType: TO_DOS_STATUS) => this.selectedType = actualSelectedType);
+
+    this.store.pipe(
+      select(getActualTodos),
+      takeUntil(this.destroy$)
+    )
+      .subscribe((actualTodos: Todo[]) => {
+        this.todoItems = actualTodos;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   addTasks(): void {
-    if (this.todoTitle.trim() && !this.todos$.some( t=> t.task == this.todoTitle)) {
-      this.store.dispatch(new AddTodo(new Todo(this.todoTitle, false)));
-    }
+    this.store.dispatch(new AddTodo(new Todo(this.todoTitle, TO_DOS_STATUS.INPROGRESS)));
     this.todoTitle = '';
   }
 
+  filteredBySelectedType(): void {
+    this.store.dispatch(new FilterTodos(this.selectedType));
+  }
 }
