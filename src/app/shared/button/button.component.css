@@ -11,8 +11,15 @@
   text-align:center;
   border: none;
   background-size: 300% 100%;
-  moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+}
+
+button{
+  /*moz-transition: left .4s ease;*/
+  /*-o-transition: left .4s ease;*/
+  /*-webkit-transition: left .4s ease;*/
+}
+
+button[disabled]{
+  background: lightslategray;
+  color: #fff;
 }

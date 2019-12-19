@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class ButtonComponent {
   @Output() action = new EventEmitter();
+  @Input() loading;
   @Input() label;
 
   click() {

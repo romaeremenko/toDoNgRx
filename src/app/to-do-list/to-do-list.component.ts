@@ -1,8 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {Todo} from "../todo.model";
 import {Store} from "@ngrx/store";
-import {ChangeStatus, DeleteTodo} from "../redux/todos.action";
-import {AppState, TO_DOS_STATUS} from "../share/global-variables";
+import {ChangeStatus, DeleteTodo} from "../store/todos.action";
+import {IAppState} from "../shared/interfaces";
+import {TO_DOS_STATUS} from "../shared/enum";
+import {Todo} from "../shared/helpers";
 
 @Component({
   selector: 'app-to-do-list',
@@ -13,7 +14,7 @@ export class ToDoListComponent {
   @Input() todo: Todo;
   @Input() selectedType: TO_DOS_STATUS;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<IAppState>) {
   }
 
   onDelete(): void {
